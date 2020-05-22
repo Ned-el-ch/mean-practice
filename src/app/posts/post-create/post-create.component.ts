@@ -43,11 +43,17 @@ export class PostCreateComponent implements OnInit {
         this.id = paramMap.get('id');
         this.isLoading = true;
         this.postsService.getPost(this.id).subscribe((res) => {
-          this.post = { id: res._id, title: res.title, content: res.content };
+          this.post = {
+            id: res._id,
+            title: res.title,
+            content: res.content,
+            imagePath: res.imagePath,
+          };
           this.isLoading = false;
           this.form.setValue({
             title: this.post.title,
             content: this.post.content,
+            image: this.post.imagePath,
           });
         });
       } else {
@@ -74,12 +80,17 @@ export class PostCreateComponent implements OnInit {
     }
     this.isLoading = true;
     if (this.mode === 'create') {
-      this.postsService.addPost(this.form.value.title, this.form.value.content);
+      this.postsService.addPost(
+        this.form.value.title,
+        this.form.value.content,
+        this.form.value.image
+      );
     } else if (this.mode === 'edit') {
       this.postsService.updatePost(
         this.id,
         this.form.value.title,
-        this.form.value.content
+        this.form.value.content,
+        this.form.value.image
       );
     }
     this.form.reset();
