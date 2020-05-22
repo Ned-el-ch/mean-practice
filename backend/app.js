@@ -1,14 +1,28 @@
-const express = require('express');
-
+const express = require("express");
+const parser = require("body-parser");
+const mongoose = require("mongoose");
 const app = express();
+const postsRoutes = require("./routes/posts")
+
+mongoose.connect("mongodb+srv://niki:1k4Ie4aczcC7HZlC@practice0-tgzhu.mongodb.net/mean?retryWrites=true&w=majority")
+  .then(() => console.log("Connected to DB"))
+  .catch(() => console.log("Couldn't connect to DB"))
+//1k4Ie4aczcC7HZlC
+app.use(parser.json());
 
 app.use((request, response, next) => {
-  console.log('first middleware')
+  response.setHeader("Access-Control-Allow-Origin", "*");
+  response.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  response.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PATCH, PUT, DELETE, OPTIONS"
+  );
   next();
-})
+});
 
-app.use((request, response, next) => {
-  response.send('expresssdsd')
-})
+app.use("/api/posts", postsRoutes)
 
 module.exports = app;
