@@ -16,6 +16,14 @@ const routes: Routes = [
     path: 'edit/:id',
     component: PostCreateComponent
   },
+  {
+    path: 'login',
+    component: PostCreateComponent
+  },
+  {
+    path: 'signup',
+    component: PostCreateComponent
+  },
 ];
 
 @NgModule({
