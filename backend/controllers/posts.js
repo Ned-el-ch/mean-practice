@@ -91,7 +91,7 @@ exports.updatePost = (request, response, next) => {
       creator: request.userData.userId
     }, post)
     .then(res => {
-      if (res.nModified > 0) {
+      if (res.n > 0) {
         response.status(204).json({
           message: 'updated successfully'
         })

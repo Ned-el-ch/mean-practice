@@ -6,7 +6,7 @@ const app = express();
 const postsRoutes = require("./routes/posts")
 const usersRoutes = require("./routes/users")
 
-mongoose.connect("mongodb+srv://niki:1k4Ie4aczcC7HZlC@practice0-tgzhu.mongodb.net/mean?retryWrites=true&w=majority", {
+mongoose.connect(`mongodb+srv://niki:${process.env.MONGO_ATLAS_PW}@practice0-tgzhu.mongodb.net/mean?retryWrites=true&w=majority`, {
     useNewUrlParser: true
   })
   .then(() => console.log("Connected to DB"))

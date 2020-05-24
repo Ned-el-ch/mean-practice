@@ -49,7 +49,7 @@ exports.loginUser = (request, response, next) => {
           email: fetchedUser.email,
           userId: fetchedUser._id
         },
-        "ahaaaahaREEEEASD12e@#E", {
+        process.env.JWT_KEY, {
           expiresIn: 3600
         }
       );
