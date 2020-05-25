@@ -6,7 +6,8 @@ const app = express();
 const postsRoutes = require("./routes/posts")
 const usersRoutes = require("./routes/users")
 
-mongoose.connect(`mongodb+srv://niki:${process.env.MONGO_ATLAS_PW}@practice0-tgzhu.mongodb.net/mean?retryWrites=true&w=majority`, {
+// mongoose.connect(`mongodb+srv://niki:${process.env.MONGO_ATLAS_PW}@practice0-tgzhu.mongodb.net/mean?retryWrites=true&w=majority`, {
+mongoose.connect(`mongodb://heroku_kwhj51nq:6b9i68u4rqphre8vt8oi13tg1h@ds163698.mlab.com:63698/heroku_kwhj51nq`, {
     useNewUrlParser: true
   })
   .then(() => console.log("Connected to DB"))
@@ -16,7 +17,7 @@ app.use(parser.json());
 app.use(parser.urlencoded({
   extended: false
 }))
-app.use("/images", express.static(path.join("backend/images")))
+app.use("/images", express.static(path.join("images")))
 
 app.use((request, response, next) => {
   response.setHeader("Access-Control-Allow-Origin", "*");
