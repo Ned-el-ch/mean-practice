@@ -2,6 +2,7 @@ const Post = require("../models/post");
 
 exports.createPost = (request, response, next) => {
   const url = `${request.protocol}://${request.get("host")}`
+  console.log(url)
   const post = new Post({
     title: request.body.title,
     content: request.body.content,
